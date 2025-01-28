@@ -8,66 +8,44 @@
         <div class="bg-white dark:bg-gray-800 shadow-md rounded-md p-6">
             {{-- Group Name --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Group Name') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{ $group->name }}
-                </p>
+                <x-labeled-paragraph label="{{__('Group Name')}}" :value="$group->name"/>
             </div>
 
             {{-- Finishing Date --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Finishing Date') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{ \Carbon\Carbon::parse($group->finishing_date)->format('d/m/Y') }}
-                </p>
+                <x-labeled-paragraph label="{{__('Finishing Date')}}" :value="\Carbon\Carbon::parse($group->finishing_date)->format('d/m/Y')"/>
             </div>
 
             {{-- Participant Limit --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Participant Count') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{ $group->participants !== null ? $group->participants->count(): '0' }} / {{ $group->participant_limit }}
-                </p>
+                <x-labeled-paragraph label="{{__('Participant Limit')}}" :value="'0 / '.$group->participant_limit"/>
             </div>
 
             {{-- Prize Pool --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Prize Pool') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{$group->prize_pool}}
-                </p>
+                <x-labeled-paragraph label="{{__('Prize Pool')}}" :value="$group->prize_pool"/>
             </div>
 
             {{-- Price --}}
             <div class="mb-4">
-                <label for="price" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{__('Ticket Price')}}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{$group->price}}
-                </p>
+                <x-labeled-paragraph label="{{__('Ticket Price')}}" :value="$group->price"/>
             </div>
 
             {{-- Group Status --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Status') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{ $group->status }}
-                </p>
+                <x-labeled-paragraph label="{{__('Status')}}" :value="$group->status"/>
             </div>
 
             {{-- Description --}}
             <div class="mb-4">
-                <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2">{{ __('Description') }}</label>
-                <p class="w-full p-3 border rounded-md bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-gray-200">
-                    {{ $group->description }}
-                </p>
+                <x-labeled-paragraph label="{{__('Description')}}" :value="$group->description"/>
             </div>
 
             {{-- Back Button --}}
             <div class="flex justify-end">
-                <button type="submit"
-                        class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-md shadow-md">
+                <a href="{{ url()->previous() }}" class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-md shadow-md">
                     {{__('Back')}}
-                </button>
+                </a>
             </div>
         </div>
     </div>
