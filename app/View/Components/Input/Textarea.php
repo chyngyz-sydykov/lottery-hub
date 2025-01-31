@@ -12,7 +12,7 @@ class Textarea extends Component
         public string $label,
         public string $name,
         public string $placeholder = '',
-        public string $value = '',
+        public ?string $value = '',
         public bool $required = false
     ) {}
 

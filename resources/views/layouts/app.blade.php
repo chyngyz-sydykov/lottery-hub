@@ -6,6 +6,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
 {{-- Flash Messages --}}
@@ -28,5 +29,6 @@
 <footer>
     @include('partials.footer')
 </footer>
+@livewireScripts
 </body>
 </html>

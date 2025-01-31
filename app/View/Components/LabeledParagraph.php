@@ -10,7 +10,7 @@ class LabeledParagraph extends Component
 {
     public function __construct(
         public string $label,
-        public string $value = '',
+        public ?string $value = '',
     ) {}
 
     public function render(): View

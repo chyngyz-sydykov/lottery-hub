@@ -10,7 +10,7 @@ class Date extends Component
     public function __construct(
         public string $label,
         public string $name,
-        public string $value = '',
+        public ?string $value = '',
         public bool $required = false
     ) {}
 

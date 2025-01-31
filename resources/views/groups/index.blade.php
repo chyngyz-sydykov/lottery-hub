@@ -17,26 +17,24 @@
 
         {{-- Group Listings --}}
         <div id="group-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @for ($i = 1; $i <= 10; $i++)
+            @forelse ($groups as $group)
                 <div class="group-card bg-white dark:bg-gray-700 shadow-md rounded-md p-6">
-                    <h3 class="text-lg font-bold mb-2">{{ 'group name' . $i }}</h3>
-                    <p><strong>{{ __('Creator') }}:</strong> {{ $i }}</p>
-                    <p><strong>{{ __('Participants') }}:</strong> {{ rand(5, 15) }} / {{ rand(10, 20) }}</p>
-                    <p><strong>{{ __('Price Pool') }}:</strong> {{ rand(5000, 10000) }} {{ __('SOM') }}</p>
-                    <p><strong>{{ __('Status') }}:</strong> {{ $i % 3 == 0 ? __('Finishing Soon') : __('Open') }}</p>
-                    <p><strong>{{ __('Balance') }}:</strong> {{ rand(5000, 15000) }} {{ __('SOM') }}</p>
-                    <p class="py-2 text-right"><a href="#" class="mt-0.5 p-2 bg-green-200 rounded-md">{{ __('View Details') }}</a></p>
+                    <h3 class="text-lg font-bold mb-2">{{ $group->name }}</h3>
+{{--                    <p><strong>{{ __('Creator') }}:</strong> {{ $group->creator->name }}</p>--}}
+                    <p><strong>{{ __('Participants') }}:</strong> {{ $group->participants_count }} / {{ $group->participant_limit }}</p>
+                    <p><strong>{{ __('Price Pool') }}:</strong> {{ $group->prize_pool }} {{ __('SOM') }}</p>
+                    <p><strong>{{ __('Status') }}:</strong> {{ $group->status }}</p>
+                    <p><strong>{{ __('Balance') }}:</strong> {{ $group->balance }} {{ __('SOM') }}</p>
+                    <p class="py-2 text-right"><a href="{{ route('groups.show', $group) }}" class="mt-0.5 p-2 bg-green-200 rounded-md">{{ __('View Details') }}</a></p>
                 </div>
-            @endfor
+                @empty
+                    <p>{{__('No Groups')}}</p>
+            @endforelse
         </div>
 
         {{-- Pagination --}}
         <div class="mt-6">
-            <ul class="flex justify-center space-x-4">
-                <li><a href="#" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 rounded-md">1</a></li>
-                <li><a href="#" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 rounded-md">2</a></li>
-                <li><a href="#" class="px-4 py-2 bg-gray-300 dark:bg-gray-700 rounded-md">3</a></li>
-            </ul>
+            {{ $groups->links() }}
         </div>
     </div>
 
